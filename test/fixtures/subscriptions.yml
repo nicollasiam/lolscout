@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  summoner_name: MyString
+  summoner_id: MyString
+
+two:
+  summoner_name: MyString
+  summoner_id: MyString

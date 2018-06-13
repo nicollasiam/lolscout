@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  champion_name: MyString
+  champion_id: MyString
+  champion_image: MyString
+
+two:
+  champion_name: MyString
+  champion_id: MyString
+  champion_image: MyString
