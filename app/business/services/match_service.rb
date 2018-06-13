@@ -11,8 +11,8 @@ module Services
                            account_id: account_id)
       end
 
-      def find(account_id, match_id)
-        client.match.find({ forAccountId: account_id }, match_id: match_id)
+      def find(match_id)
+        client.match.find(match_id: match_id)
       end
     end
   end
