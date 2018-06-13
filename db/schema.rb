@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_13_003756) do
+ActiveRecord::Schema.define(version: 2018_06_13_141207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_003756) do
     t.string "season_id"
     t.string "champion_id"
     t.integer "duration"
-    t.integer "date"
+    t.bigint "date"
     t.string "summoner_name"
     t.string "elo"
     t.boolean "win"
@@ -59,18 +59,18 @@ ActiveRecord::Schema.define(version: 2018_06_13_003756) do
     t.integer "vision_wards_bought_in_game"
     t.integer "wards_placed"
     t.integer "wards_killed"
-    t.integer "creeps_per_min_deltas_0_10"
-    t.integer "creeps_per_min_deltas_10_20"
-    t.integer "creeps_per_min_deltas_20_30"
-    t.integer "creeps_per_min_deltas_30_end"
-    t.integer "xp_per_min_deltas_0_10"
-    t.integer "xp_per_min_deltas_10_20"
-    t.integer "xp_per_min_deltas_20_30"
-    t.integer "xp_per_min_deltas_30_end"
-    t.integer "gold_per_min_deltas_0_10"
-    t.integer "gold_per_min_deltas_10_20"
-    t.integer "gold_per_min_deltas_20_30"
-    t.integer "gold_per_min_deltas_30_end"
+    t.float "creeps_per_min_deltas_0_10"
+    t.float "creeps_per_min_deltas_10_20"
+    t.float "creeps_per_min_deltas_20_30"
+    t.float "creeps_per_min_deltas_30_end"
+    t.float "xp_per_min_deltas_0_10"
+    t.float "xp_per_min_deltas_10_20"
+    t.float "xp_per_min_deltas_20_30"
+    t.float "xp_per_min_deltas_30_end"
+    t.float "gold_per_min_deltas_0_10"
+    t.float "gold_per_min_deltas_10_20"
+    t.float "gold_per_min_deltas_20_30"
+    t.float "gold_per_min_deltas_30_end"
     t.string "item_1"
     t.string "item_2"
     t.string "item_3"
@@ -79,6 +79,11 @@ ActiveRecord::Schema.define(version: 2018_06_13_003756) do
     t.string "item_6"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "item_0"
+    t.boolean "first_blood_kill"
+    t.boolean "first_blood_assist"
+    t.boolean "first_tower_kill"
+    t.boolean "first_tower_assist"
   end
 
   create_table "subscriptions", force: :cascade do |t|
