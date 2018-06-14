@@ -2,17 +2,17 @@ module Translators
   class MatchTranslator
     class << self
       def translate(match_DTO, summoner_DTO)
-        @summoner_id_in_match = find_id_in_match(match_DTO, summoner_DTO.name)
+        @summoner_id_in_match = find_id_in_match(match_DTO, summoner_DTO.summoner_name)
         @summoner_in_match = find_participant_in_match(match_DTO)
 
         {
-          summoner_id: summoner_DTO.account_id,
+          summoner_id: summoner_DTO.summoner_id,
           match_id: match_DTO.game_id,
           season_id: match_DTO.season_id,
           champion_id: @summoner_in_match.champion_id,
           duration: match_DTO.game_duration,
           date: match_DTO.game_creation,
-          summoner_name: summoner_DTO.name,
+          summoner_name: summoner_DTO.summoner_name,
           elo: @summoner_in_match.highest_achieved_season_tier,
           win: @summoner_in_match.stats.win,
           kills: @summoner_in_match.stats.kills,

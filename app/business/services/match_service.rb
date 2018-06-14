@@ -3,12 +3,15 @@ module Services
     include LolClient
 
     class << self
-      def all(account_id)#, from, to)
-        client.match.all({ season: ENV['CURRENT_SEASON_ID'],
-                           queue: ENV['RANKED_QUEUE_ID']},
-                           # beginTime: from,
-                           # endTime: to },
-                           account_id: account_id)
+      def all(account_id, beginTime)
+        begin
+          client.match.all({ season: ENV['CURRENT_SEASON_ID'],
+                             queue: ENV['RANKED_QUEUE_ID'],
+                             beginTime: beginTime },
+                             account_id: account_id)
+        rescue
+          puts "Não encontrado jogos para o jogador #{account_id}"
+        end
       end
 
       def find(match_id)
