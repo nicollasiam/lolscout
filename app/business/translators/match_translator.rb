@@ -26,6 +26,7 @@ module Translators
           quadra_kills: @summoner_in_match.stats.quadra_kills,
           penta_kills: @summoner_in_match.stats.penta_kills,
           total_damage_dealt_to_champions: @summoner_in_match.stats.total_damage_dealt_to_champions,
+          total_damage_taken: @summoner_in_match.stats.total_damage_taken,
           gold_earned: @summoner_in_match.stats.gold_earned,
           total_minions_killed: @summoner_in_match.stats.total_minions_killed,
           neutral_minions_killed_team_jungle: @summoner_in_match.stats.neutral_minions_killed_team_jungle,
@@ -55,7 +56,14 @@ module Translators
           item_3: (@summoner_in_match.stats.item3 rescue ''),
           item_4: (@summoner_in_match.stats.item4 rescue ''),
           item_5: (@summoner_in_match.stats.item5 rescue ''),
-          item_6: (@summoner_in_match.stats.item6 rescue '')
+          item_6: (@summoner_in_match.stats.item6 rescue ''),
+          deaths_per_thousand_damage_taken: deaths_per_thousand_damage_taken,
+          kills_per_thousand_damage_dealt: kills_per_thousand_damage_dealt,
+          kill_participation: kill_participation(match_DTO),
+          damage_participation: damage_participation(match_DTO),
+          gold_participation: gold_participation(match_DTO),
+          damage_per_gold: damage_per_gold(match_DTO),
+          wards_per_minute: wards_per_minute(match_DTO)
         }
       end
 
@@ -67,6 +75,51 @@ module Translators
 
       def find_participant_in_match(match_DTO)
         match_DTO.participants.find { |participant| participant.participant_id.eql?(@summoner_id_in_match) }
+      end
+
+      def deaths_per_thousand_damage_taken
+        @summoner_in_match.stats.deaths.to_f / (@summoner_in_match.stats.total_damage_taken.to_f / 1000)
+      end
+
+      def kills_per_thousand_damage_dealt
+        @summoner_in_match.stats.kills.to_f / (@summoner_in_match.stats.total_damage_dealt_to_champions.to_f / 1000)
+      end
+
+      def kill_participation(match_DTO)
+        kills_assists = (@summoner_in_match.stats.kills + @summoner_in_match.stats.assists).to_f
+        team_kills = match_DTO.participants.map do |participant|
+                      (participant.stats.win.eql?(@summoner_in_match.stats.win) && participant != @summoner_in_match) ? participant.stats.kills : 0
+                     end.reduce(&:+).to_f
+
+        kills_assists / team_kills
+      end
+
+      def damage_participation(match_DTO)
+        team_damage = match_DTO.participants.map do |participant|
+                        (participant.stats.win.eql?(@summoner_in_match.stats.win) && participant != @summoner_in_match) ? participant.stats.total_damage_dealt_to_champions : 0
+                      end.reduce(&:+).to_f
+
+        @summoner_in_match.stats.total_damage_dealt_to_champions.to_f / team_damage
+      end
+
+      def gold_participation(match_DTO)
+        total_gold = match_DTO.participants.map do |participant|
+                      (participant.stats.win.eql?(@summoner_in_match.stats.win) && participant != @summoner_in_match) ? participant.stats.gold_earned : 0
+                    end.reduce(&:+).to_f
+
+        @summoner_in_match.stats.gold_earned.to_f / total_gold
+      end
+
+      def damage_per_gold(match_DTO)
+        @summoner_in_match.stats.total_damage_dealt_to_champions.to_f / @summoner_in_match.stats.gold_earned.to_f
+      end
+
+      def wards_per_minute(match_DTO)
+        @summoner_in_match.stats.wards_placed.to_f / (match_DTO.game_duration.to_f / 1000)
+      end
+
+      def gold_with_vision_wards
+        @summoner_in_match.stats.wards_placed * ENV['VISION_WARD_PRICE'].to_i
       end
     end
   end

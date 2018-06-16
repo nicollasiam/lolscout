@@ -1,0 +1,2 @@
+class SummonerBi < ApplicationRecord
+end
