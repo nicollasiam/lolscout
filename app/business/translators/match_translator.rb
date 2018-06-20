@@ -88,7 +88,7 @@ module Translators
       def kill_participation(match_DTO)
         kills_assists = (@summoner_in_match.stats.kills + @summoner_in_match.stats.assists).to_f
         team_kills = match_DTO.participants.map do |participant|
-                      (participant.stats.win.eql?(@summoner_in_match.stats.win) && participant != @summoner_in_match) ? participant.stats.kills : 0
+                      participant.stats.win.eql?(@summoner_in_match.stats.win) ? participant.stats.kills : 0
                      end.reduce(&:+).to_f
 
         (kills_assists / team_kills).round(2)
@@ -96,7 +96,7 @@ module Translators
 
       def damage_participation(match_DTO)
         team_damage = match_DTO.participants.map do |participant|
-                        (participant.stats.win.eql?(@summoner_in_match.stats.win) && participant != @summoner_in_match) ? participant.stats.total_damage_dealt_to_champions : 0
+                        participant.stats.win.eql?(@summoner_in_match.stats.win) ? participant.stats.total_damage_dealt_to_champions : 0
                       end.reduce(&:+).to_f
 
         (@summoner_in_match.stats.total_damage_dealt_to_champions.to_f / team_damage).round(2)
@@ -104,7 +104,7 @@ module Translators
 
       def gold_participation(match_DTO)
         total_gold = match_DTO.participants.map do |participant|
-                      (participant.stats.win.eql?(@summoner_in_match.stats.win) && participant != @summoner_in_match) ? participant.stats.gold_earned : 0
+                      participant.stats.win.eql?(@summoner_in_match.stats.win) ? participant.stats.gold_earned : 0
                     end.reduce(&:+).to_f
 
         (@summoner_in_match.stats.gold_earned.to_f / total_gold).round(2)

@@ -155,123 +155,123 @@ module Translators
       end
 
       def average_total_damage_dealt_to_champions
-        total_total_damage_dealt_to_champions = @summoner_matches.map(&:total_damage_dealt_to_champions).reject { |data| !data }.reduce(&:+) || 0
+        total_total_damage_dealt_to_champions = @summoner_matches.map(&:total_damage_dealt_to_champions).reject { |data| !data }
 
-        (total_total_damage_dealt_to_champions.to_f / @matches_count).round(2)
+        ((total_total_damage_dealt_to_champions.reduce(&:+) || 0).to_f / total_total_damage_dealt_to_champions.count).round(2)
       end
 
       def average_gold_earned
-        total_gold_earned = @summoner_matches.map(&:gold_earned).reject { |data| !data }.reduce(&:+) || 0
+        total_gold_earned = @summoner_matches.map(&:gold_earned).reject { |data| !data }
 
-        (total_gold_earned.to_f / @matches_count).round(2)
+        ((total_gold_earned.reduce(&:+) || 0).to_f / total_gold_earned.count).round(2)
       end
 
       def average_total_minions_killed
-        total_total_minions_killed = @summoner_matches.map(&:total_minions_killed).reject { |data| !data }.reduce(&:+) || 0
+        total_total_minions_killed = @summoner_matches.map(&:total_minions_killed).reject { |data| !data }
 
-        (total_total_minions_killed.to_f / @matches_count).round(2)
+        ((total_total_minions_killed.reduce(&:+) || 0).to_f / total_total_minions_killed.count).round(2)
       end
 
       def average_neutral_minions_killed_team_jungle
-        total_neutral_minions_killed_team_jungle = @summoner_matches.map(&:neutral_minions_killed_team_jungle).reject { |data| !data }.reduce(&:+) || 0
+        total_neutral_minions_killed_team_jungle = @summoner_matches.map(&:neutral_minions_killed_team_jungle).reject { |data| !data }
 
-        (total_neutral_minions_killed_team_jungle.to_f / @matches_count).round(2)
+        ((total_neutral_minions_killed_team_jungle.reduce(&:+) || 0).to_f / total_neutral_minions_killed_team_jungle.count).round(2)
       end
 
       def average_neutral_minions_killed_enemy_jungle
-        total_neutral_minions_killed_enemy_jungle = @summoner_matches.map(&:neutral_minions_killed_enemy_jungle).reject { |data| !data }.reduce(&:+) || 0
+        total_neutral_minions_killed_enemy_jungle = @summoner_matches.map(&:neutral_minions_killed_enemy_jungle).reject { |data| !data }
 
-        (total_neutral_minions_killed_enemy_jungle.to_f / @matches_count).round(2)
+        ((total_neutral_minions_killed_enemy_jungle.reduce(&:+)).to_f / total_neutral_minions_killed_enemy_jungle.count).round(2)
       end
 
       def average_vision_wards_bought_in_game
-        total_vision_wards_bought_in_game = @summoner_matches.map(&:vision_wards_bought_in_game).reject { |data| !data }.reduce(&:+) || 0
+        total_vision_wards_bought_in_game = @summoner_matches.map(&:vision_wards_bought_in_game).reject { |data| !data }
 
-        (total_vision_wards_bought_in_game.to_f / @matches_count).round(2)
+        ((total_vision_wards_bought_in_game.reduce(&:+)).to_f / total_vision_wards_bought_in_game.count).round(2)
       end
 
       def average_wards_placed
-        total_wards_placed = @summoner_matches.map(&:wards_placed).reject { |data| !data }.reduce(&:+) || 0
+        total_wards_placed = @summoner_matches.map(&:wards_placed).reject { |data| !data }
 
-        (total_wards_placed.to_f / @matches_count).round(2)
+        ((total_wards_placed.reduce(&:+)).to_f / total_wards_placed.count).round(2)
       end
 
       def average_wards_killed
-        total_wards_killed = @summoner_matches.map(&:wards_killed).reject { |data| !data }.reduce(&:+) || 0
+        total_wards_killed = @summoner_matches.map(&:wards_killed).reject { |data| !data }
 
-        (total_wards_killed.to_f / @matches_count).round(2)
+        ((total_wards_killed.reduce(&:+)).to_f / total_wards_killed.count).round(2)
       end
 
       def average_creeps_per_min_deltas_0_10
-        total_creeps_per_min_deltas_0_10 = @summoner_matches.map(&:creeps_per_min_deltas_0_10).reject { |data| !data }.reduce(&:+) || 0
+        total_creeps_per_min_deltas_0_10 = @summoner_matches.map(&:creeps_per_min_deltas_0_10).reject { |data| !data }
 
-        (total_creeps_per_min_deltas_0_10.to_f / @matches_count).round(2)
+        ((total_creeps_per_min_deltas_0_10.reduce(&:+)).to_f / total_creeps_per_min_deltas_0_10.count).round(2)
       end
 
       def average_creeps_per_min_deltas_10_20
-        total_creeps_per_min_deltas_10_20 = @summoner_matches.map(&:creeps_per_min_deltas_10_20).reject { |data| !data }.reduce(&:+) || 0
+        total_creeps_per_min_deltas_10_20 = @summoner_matches.map(&:creeps_per_min_deltas_10_20).reject { |data| !data }
 
-        (total_creeps_per_min_deltas_10_20.to_f / @matches_count).round(2)
+        ((total_creeps_per_min_deltas_10_20.reduce(&:+)).to_f / total_creeps_per_min_deltas_10_20.count).round(2)
       end
 
       def average_creeps_per_min_deltas_20_30
-        total_creeps_per_min_deltas_20_30 = @summoner_matches.map(&:creeps_per_min_deltas_20_30).reject { |data| !data }.reduce(&:+) || 0
+        total_creeps_per_min_deltas_20_30 = @summoner_matches.map(&:creeps_per_min_deltas_20_30).reject { |data| !data }
 
-        (total_creeps_per_min_deltas_20_30.to_f / @matches_count).round(2)
+        ((total_creeps_per_min_deltas_20_30.reduce(&:+)).to_f / total_creeps_per_min_deltas_20_30.count).round(2)
       end
 
       def average_creeps_per_min_deltas_30_end
-        total_creeps_per_min_deltas_30_end = @summoner_matches.map(&:creeps_per_min_deltas_30_end).reject { |data| !data }.reduce(&:+) || 0
+        total_creeps_per_min_deltas_30_end = @summoner_matches.map(&:creeps_per_min_deltas_30_end).reject { |data| !data }
 
-        (total_creeps_per_min_deltas_30_end.to_f / @matches_count).round(2)
+        ((total_creeps_per_min_deltas_30_end.reduce(&:+)).to_f / total_creeps_per_min_deltas_30_end.count).round(2)
       end
 
       def average_xp_per_min_deltas_0_10
-        total_xp_per_min_deltas_0_10 = @summoner_matches.map(&:xp_per_min_deltas_0_10).reject { |data| !data }.reduce(&:+) || 0
+        total_xp_per_min_deltas_0_10 = @summoner_matches.map(&:xp_per_min_deltas_0_10).reject { |data| !data }
 
-        (total_xp_per_min_deltas_0_10.to_f / @matches_count).round(2)
+        ((total_xp_per_min_deltas_0_10.reduce(&:+)).to_f / total_xp_per_min_deltas_0_10.count).round(2)
       end
 
       def average_xp_per_min_deltas_10_20
-        total_xp_per_min_deltas_10_20 = @summoner_matches.map(&:xp_per_min_deltas_10_20).reject { |data| !data }.reduce(&:+) || 0
+        total_xp_per_min_deltas_10_20 = @summoner_matches.map(&:xp_per_min_deltas_10_20).reject { |data| !data }
 
-        (total_xp_per_min_deltas_10_20.to_f / @matches_count).round(2)
+        ((total_xp_per_min_deltas_10_20.reduce(&:+)).to_f / total_xp_per_min_deltas_10_20.count).round(2)
       end
 
       def average_xp_per_min_deltas_20_30
-        total_xp_per_min_deltas_20_30 = @summoner_matches.map(&:xp_per_min_deltas_20_30).reject { |data| !data }.reduce(&:+) || 0
+        total_xp_per_min_deltas_20_30 = @summoner_matches.map(&:xp_per_min_deltas_20_30).reject { |data| !data }
 
-        (total_xp_per_min_deltas_20_30.to_f / @matches_count).round(2)
+        ((total_xp_per_min_deltas_20_30.reduce(&:+)).to_f / total_xp_per_min_deltas_20_30.count).round(2)
       end
 
       def average_xp_per_min_deltas_30_end
-        total_xp_per_min_deltas_30_end = @summoner_matches.map(&:xp_per_min_deltas_30_end).reject { |data| !data }.reduce(&:+) || 0
+        total_xp_per_min_deltas_30_end = @summoner_matches.map(&:xp_per_min_deltas_30_end).reject { |data| !data }
 
-        (total_xp_per_min_deltas_30_end.to_f / @matches_count).round(2)
+        ((total_xp_per_min_deltas_30_end.reduce(&:+)).to_f / total_xp_per_min_deltas_30_end.count).round(2)
       end
 
       def average_gold_per_min_deltas_0_10
-        total_gold_per_min_deltas_0_10 = @summoner_matches.map(&:gold_per_min_deltas_0_10).reject { |data| !data }.reduce(&:+) || 0
+        total_gold_per_min_deltas_0_10 = @summoner_matches.map(&:gold_per_min_deltas_0_10).reject { |data| !data }
 
-        (total_gold_per_min_deltas_0_10.to_f / @matches_count).round(2)
+        ((total_gold_per_min_deltas_0_10.reduce(&:+)).to_f / total_gold_per_min_deltas_0_10.count).round(2)
       end
 
       def average_gold_per_min_deltas_10_20
-        total_gold_per_min_deltas_10_20 = @summoner_matches.map(&:gold_per_min_deltas_10_20).reject { |data| !data }.reduce(&:+) || 0
+        total_gold_per_min_deltas_10_20 = @summoner_matches.map(&:gold_per_min_deltas_10_20).reject { |data| !data }
 
-        (total_gold_per_min_deltas_10_20.to_f / @matches_count).round(2)
+        ((total_gold_per_min_deltas_10_20.reduce(&:+)).to_f / total_gold_per_min_deltas_10_20.count).round(2)
       end
 
       def average_gold_per_min_deltas_20_30
-        total_gold_per_min_deltas_20_30 = @summoner_matches.map(&:gold_per_min_deltas_20_30).reject { |data| !data }.reduce(&:+) || 0
+        total_gold_per_min_deltas_20_30 = @summoner_matches.map(&:gold_per_min_deltas_20_30).reject { |data| !data }
 
-        (total_gold_per_min_deltas_20_30.to_f / @matches_count).round(2)
+        ((total_gold_per_min_deltas_20_30.reduce(&:+)).to_f / total_gold_per_min_deltas_20_30.count).round(2)
       end
 
       def average_gold_per_min_deltas_30_end
-        total_gold_per_min_deltas_30_end = @summoner_matches.map(&:gold_per_min_deltas_30_end).reject { |data| !data }.reduce(&:+) || 0
+        total_gold_per_min_deltas_30_end = @summoner_matches.map(&:gold_per_min_deltas_30_end).reject { |data| !data }
 
-        (total_gold_per_min_deltas_30_end.to_f / @matches_count).round(2)
+        ((total_gold_per_min_deltas_30_end.reduce(&:+)).to_f / total_gold_per_min_deltas_30_end.count).round(2)
       end
 
       def average_first_blood_kill
@@ -299,57 +299,57 @@ module Translators
       end
 
       def average_total_damage_taken
-        total_total_damage_taken = @summoner_matches.map(&:total_damage_taken).reject { |data| !data }.reduce(&:+) || 0
+        total_total_damage_taken = @summoner_matches.map(&:total_damage_taken).reject { |data| !data }
 
-        (total_total_damage_taken.to_f / @matches_count).round(2)
+        ((total_total_damage_taken.reduce(&:+)).to_f / total_total_damage_taken.count).round(2)
       end
 
       def average_deaths_per_thousand_damage_taken
-        total_deaths_per_thousand_damage_taken = @summoner_matches.map(&:deaths_per_thousand_damage_taken).reject { |data| !data }.reduce(&:+) || 0
+        total_deaths_per_thousand_damage_taken = @summoner_matches.map(&:deaths_per_thousand_damage_taken).reject { |data| !data }
 
-        (total_deaths_per_thousand_damage_taken.to_f / @matches_count).round(2)
+        ((total_deaths_per_thousand_damage_taken.reduce(&:+)).to_f / total_deaths_per_thousand_damage_taken.count).round(2)
       end
 
       def average_kills_per_thousand_damage_dealt
-        total_kills_per_thousand_damage_dealt = @summoner_matches.map(&:kills_per_thousand_damage_dealt).reject { |data| !data }.reduce(&:+) || 0
+        total_kills_per_thousand_damage_dealt = @summoner_matches.map(&:kills_per_thousand_damage_dealt).reject { |data| !data }
 
-        (total_kills_per_thousand_damage_dealt.to_f / @matches_count).round(2)
+        ((total_kills_per_thousand_damage_dealt.reduce(&:+)).to_f / total_kills_per_thousand_damage_dealt.count).round(2)
       end
 
       def average_kill_participation
-        total_kill_participation = @summoner_matches.map(&:kill_participation).reject { |data| !data }.reduce(&:+) || 0
+        total_kill_participation = @summoner_matches.map(&:kill_participation).reject { |data| !data }
 
-        (total_kill_participation.to_f / @matches_count).round(2)
+        ((total_kill_participation.reduce(&:+)).to_f / total_kill_participation.count).round(2)
       end
 
       def average_damage_participation
-        total_damage_participation = @summoner_matches.map(&:damage_participation).reject { |data| !data }.reduce(&:+) || 0
+        total_damage_participation = @summoner_matches.map(&:damage_participation).reject { |data| !data }
 
-        (total_damage_participation.to_f / @matches_count).round(2)
+        ((total_damage_participation.reduce(&:+)).to_f / total_damage_participation.count).round(2)
       end
 
       def average_gold_participation
-        total_gold_participation = @summoner_matches.map(&:gold_participation).reject { |data| !data }.reduce(&:+) || 0
+        total_gold_participation = @summoner_matches.map(&:gold_participation).reject { |data| !data }
 
-        (total_gold_participation.to_f / @matches_count).round(2)
+        ((total_gold_participation.reduce(&:+)).to_f / total_gold_participation.count).round(2)
       end
 
       def average_damage_per_gold
-        total_damage_per_gold = @summoner_matches.map(&:damage_per_gold).reject { |data| !data }.reduce(&:+) || 0
+        total_damage_per_gold = @summoner_matches.map(&:damage_per_gold).reject { |data| !data }
 
-        (total_damage_per_gold.to_f / @matches_count).round(2)
+        ((total_damage_per_gold.reduce(&:+)).to_f / total_damage_per_gold.count).round(2)
       end
 
       def average_wards_per_minute
-        total_wards_per_minute = @summoner_matches.map(&:wards_per_minute).reject { |data| !data }.reduce(&:+) || 0
+        total_wards_per_minute = @summoner_matches.map(&:wards_per_minute).reject { |data| !data }
 
-        (total_wards_per_minute.to_f / @matches_count).round(2)
+        ((total_wards_per_minute.reduce(&:+)).to_f / total_wards_per_minute.count).round(2)
       end
 
       def average_gold_with_vision_wards
-        total_gold_with_vision_wards = @summoner_matches.map(&:gold_with_vision_wards).reject { |data| !data }.reduce(&:+) || 0
+        total_gold_with_vision_wards = @summoner_matches.map(&:gold_with_vision_wards).reject { |data| !data }
 
-        (total_gold_with_vision_wards.to_f / @matches_count).round(2)
+        ((total_gold_with_vision_wards.reduce(&:+)).to_f / total_gold_with_vision_wards.count).round(2)
       end
     end
   end
