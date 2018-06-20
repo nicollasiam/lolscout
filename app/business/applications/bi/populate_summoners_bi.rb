@@ -9,10 +9,12 @@ module Applications
         # If number of matches is greater than previous
         # Add another row
         summoners.each do |summoner|
-          debugger
           summoner_matches = Match.where(summoner_id: summoner.summoner_id, season_id: ENV['CURRENT_SEASON_ID'])
 
           next if move_to_next?(summoner.summoner_id, summoner_matches)
+
+          # Log
+          puts "Updating SummonerBi: #{summoner.summoner_name}"
 
           update_klass.execute(summoner, summoner_matches)
         end
@@ -22,7 +24,10 @@ module Applications
 
       def move_to_next?(summoner_id, summoner_matches)
         # Get the most recent Bi calculated (only number of games played)
-        previous_total_games_played = SummonerBi.where(summoner_id: summoner_id).order(total_games: :desc).limit(1).pluck(:total_games)
+        previous_total_games_played = (SummonerBi.where(summoner_id: summoner_id).order(total_games: :desc).limit(1).pluck(:total_games) rescue nil)
+
+        # Return false if there were no analisys yet
+        return false unless previous_total_games_played
 
         # Move to next summoner if no matches were found
         # Move to next summoner if there is no new matches

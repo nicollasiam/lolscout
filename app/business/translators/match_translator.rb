@@ -78,11 +78,11 @@ module Translators
       end
 
       def deaths_per_thousand_damage_taken
-        @summoner_in_match.stats.deaths.to_f / (@summoner_in_match.stats.total_damage_taken.to_f / 1000)
+        (@summoner_in_match.stats.deaths.to_f / (@summoner_in_match.stats.total_damage_taken.to_f / 1000)).round(2)
       end
 
       def kills_per_thousand_damage_dealt
-        @summoner_in_match.stats.kills.to_f / (@summoner_in_match.stats.total_damage_dealt_to_champions.to_f / 1000)
+        (@summoner_in_match.stats.kills.to_f / (@summoner_in_match.stats.total_damage_dealt_to_champions.to_f / 1000)).round(2)
       end
 
       def kill_participation(match_DTO)
@@ -91,7 +91,7 @@ module Translators
                       (participant.stats.win.eql?(@summoner_in_match.stats.win) && participant != @summoner_in_match) ? participant.stats.kills : 0
                      end.reduce(&:+).to_f
 
-        kills_assists / team_kills
+        (kills_assists / team_kills).round(2)
       end
 
       def damage_participation(match_DTO)
@@ -99,7 +99,7 @@ module Translators
                         (participant.stats.win.eql?(@summoner_in_match.stats.win) && participant != @summoner_in_match) ? participant.stats.total_damage_dealt_to_champions : 0
                       end.reduce(&:+).to_f
 
-        @summoner_in_match.stats.total_damage_dealt_to_champions.to_f / team_damage
+        (@summoner_in_match.stats.total_damage_dealt_to_champions.to_f / team_damage).round(2)
       end
 
       def gold_participation(match_DTO)
@@ -107,19 +107,19 @@ module Translators
                       (participant.stats.win.eql?(@summoner_in_match.stats.win) && participant != @summoner_in_match) ? participant.stats.gold_earned : 0
                     end.reduce(&:+).to_f
 
-        @summoner_in_match.stats.gold_earned.to_f / total_gold
+        (@summoner_in_match.stats.gold_earned.to_f / total_gold).round(2)
       end
 
       def damage_per_gold(match_DTO)
-        @summoner_in_match.stats.total_damage_dealt_to_champions.to_f / @summoner_in_match.stats.gold_earned.to_f
+        (@summoner_in_match.stats.total_damage_dealt_to_champions.to_f / @summoner_in_match.stats.gold_earned.to_f).round(2)
       end
 
       def wards_per_minute(match_DTO)
-        @summoner_in_match.stats.wards_placed.to_f / (match_DTO.game_duration.to_f / 1000)
+        (@summoner_in_match.stats.wards_placed.to_f / (match_DTO.game_duration / 60).to_f).round(2)
       end
 
       def gold_with_vision_wards
-        @summoner_in_match.stats.wards_placed * ENV['VISION_WARD_PRICE'].to_i
+        @summoner_in_match.stats.wards_placed * ENV['VISION_WARD_PRICE'].to_f
       end
     end
   end

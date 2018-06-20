@@ -15,7 +15,11 @@ module Applications
           # Get all matches of each summoner (with beginTime and endTime=DateTime.now)
           matches = get_matches(summoner.summoner_id, beginTime)
 
+          # Move to next summoner if no new mathes were found
           next unless matches
+
+          # Log
+          puts "Updating Matches of Summoner: #{summoner.summoner_name}"
 
           matches.each do |match|
             # Get informations of each match and update the database
