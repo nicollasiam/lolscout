@@ -24,14 +24,16 @@ module Applications
 
       def move_to_next?(summoner_id, summoner_matches)
         # Get the most recent Bi calculated (only number of games played)
-        previous_total_games_played = (SummonerBi.where(summoner_id: summoner_id).order(total_games: :desc).limit(1).pluck(:total_games) rescue nil)
-
-        # Return false if there were no analisys yet
-        return false unless previous_total_games_played
+        previous_total_games_played = (SummonerBi.where(summoner_id: summoner_id).order(total_games: :desc).limit(1).pluck(:total_games).first rescue nil)
 
         # Move to next summoner if no matches were found
+        return true if summoner_matches.empty?
+
+        # Return false if there were no analisys yet
+        return false if !previous_total_games_played
+
         # Move to next summoner if there is no new matches
-        summoner_matches.empty? || summoner_matches.count.eql?(previous_total_games_played)
+        return true if summoner_matches.count.eql?(previous_total_games_played)
       end
     end
   end
