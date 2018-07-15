@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_15_200817) do
+ActiveRecord::Schema.define(version: 2018_07_15_203406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,8 +125,6 @@ ActiveRecord::Schema.define(version: 2018_07_15_200817) do
   end
 
   create_table "summoner_performances", force: :cascade do |t|
-    t.string "summoner_id"
-    t.string "summoner_name"
     t.string "season_id"
     t.string "elo"
     t.float "total_time_spent_playing"
