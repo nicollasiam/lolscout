@@ -4,5 +4,5 @@ class Player < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :summoner
+  has_one :summoner, inverse_of: :player
 end
