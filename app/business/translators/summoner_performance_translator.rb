@@ -1,5 +1,5 @@
 module Translators
-  class SummonerBiTranslator
+  class SummonerPerformanceTranslator
     class << self
       def translate(summoner_DTO, summoner_matches)
         @summoner_matches = summoner_matches

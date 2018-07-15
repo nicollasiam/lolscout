@@ -1,0 +1,2 @@
+class SummonerPerfermance < ApplicationRecord
+end

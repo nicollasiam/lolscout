@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_15_193345) do
+ActiveRecord::Schema.define(version: 2018_07_15_200817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 2018_07_15_193345) do
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
   end
 
-  create_table "summoner_bis", force: :cascade do |t|
+  create_table "summoner_performances", force: :cascade do |t|
     t.string "summoner_id"
     t.string "summoner_name"
     t.string "season_id"
