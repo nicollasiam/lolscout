@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_15_135842) do
+ActiveRecord::Schema.define(version: 2018_07_15_193345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,13 +124,6 @@ ActiveRecord::Schema.define(version: 2018_07_15_135842) do
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
   end
 
-  create_table "subscriptions", force: :cascade do |t|
-    t.string "summoner_name"
-    t.string "summoner_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "summoner_bis", force: :cascade do |t|
     t.string "summoner_id"
     t.string "summoner_name"
@@ -189,4 +182,14 @@ ActiveRecord::Schema.define(version: 2018_07_15_135842) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "summoners", force: :cascade do |t|
+    t.string "summoner_name"
+    t.string "summoner_id"
+    t.bigint "player_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_summoners_on_player_id"
+  end
+
+  add_foreign_key "summoners", "players"
 end

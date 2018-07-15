@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  summoner_name: MyString
+  summoner_id: MyString
+  player: one
+
+two:
+  summoner_name: MyString
+  summoner_id: MyString
+  player: two
