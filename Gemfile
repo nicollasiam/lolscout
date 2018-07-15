@@ -40,7 +40,7 @@ gem 'ruby-lol'
 gem 'awesome_print'
 
 # Front end gems
-gem 'slim'
+gem 'slim-rails'
 
 # Authentication
 gem 'devise'
